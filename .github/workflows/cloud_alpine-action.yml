@@ -1,10 +1,11 @@
-name: Docker Image CI
-
+name: cloud_alpine
 on:
   push:
     branches: [ master ]
+    paths: alpine/**
   pull_request:
     branches: [ master ]
+    paths: alpine/**
 
 jobs:
   build:
@@ -17,7 +18,8 @@ jobs:
         with:
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}
-         repository: h3nryza/h3nryza_alpine
+         repository: h3nryza/cloud_alpine
          dockerfile: alpine/Dockerfile
          tag_with_ref: true
          tag_with_sha: true
+
