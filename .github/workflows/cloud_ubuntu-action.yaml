@@ -18,7 +18,7 @@ jobs:
         with:
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}
-         repository: h3nryza/cloud_alpine
+         repository: h3nryza/cloud_ubuntu
          dockerfile: ubuntu/Dockerfile
          tag_with_ref: true
          tag_with_sha: true
