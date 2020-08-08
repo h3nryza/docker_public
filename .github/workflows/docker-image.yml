@@ -17,7 +17,7 @@ jobs:
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v1
-         with:
+        with:
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}
          repository: h3nryza/h3nryza_alpine
