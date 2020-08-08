@@ -32,5 +32,5 @@ RUN sudo bash -c zsh
 
 
 #ForDriveMount
-mkdir /opt/userdata -p
+RUN mkdir /opt/userdata -p
 
