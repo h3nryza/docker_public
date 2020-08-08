@@ -1,0 +1,5 @@
+docker stop $(docker ps -q)
+docker rmi -f $(docker image ls -q)
+docker system prune -af
+
+# EntryPoint vs CMD vs RUN

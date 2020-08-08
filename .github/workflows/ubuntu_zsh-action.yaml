@@ -1,11 +1,11 @@
-name: cloud_alpine
+name: ubuntu_zsh
 on:
   push:
     branches: [ master ]
-    paths: cloud_alpine/**
+    paths: ubuntu_zsh/**
   pull_request:
     branches: [ master ]
-    paths: cloud_alpine/**
+    paths: ubuntu_zsh/**
 
 jobs:
   build:
@@ -18,8 +18,8 @@ jobs:
         with:
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}
-         repository: h3nryza/cloud_alpine
-         dockerfile: cloud_alpine/Dockerfile
+         repository: h3nryza/ubuntu_zsh
+         dockerfile: ubuntu_zsh/Dockerfile
          tag_with_ref: true
          tag_with_sha: true
 
