@@ -26,8 +26,8 @@ RUN sudo apt-add-repository ppa:git-core/ppa
 RUN sudo apt-get update
 RUN sudo apt-get install zsh -y
 RUN curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash
-RUN /bin/bash -c echo "skip_global_compinit=1" >>/etc/zsh/zshenv
-RUN /bin/bash -c echo "ZSH_DISABLE_COMPFIX="true" >>/etc/zsh/zshenv
+RUN sudo /bin/bash -c echo "skip_global_compinit=1" >>/etc/zsh/zshenv
+RUN sudo /bin/bash -c echo "ZSH_DISABLE_COMPFIX="true" >>/etc/zsh/zshenv
 RUN sudo bash -c zsh
 
 
