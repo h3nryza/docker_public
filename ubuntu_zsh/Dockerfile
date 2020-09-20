@@ -1,6 +1,8 @@
 FROM linuxbrew/linuxbrew:latest
 
 LABEL version="1.0" maintainer="https://github.com/h3nryza"
+#https://github.com/ohmyzsh/ohmyzsh
+#https://medium.com/wearetheledger/oh-my-zsh-made-for-cli-lovers-installation-guide-3131ca5491fb
 
 # Arguments
 ARG PACKER_VER=1.5.6
@@ -10,27 +12,35 @@ ARG TF_VER=0.12.29
 RUN sudo apt-get update -y
 
 # COMMON
-RUN sudo apt install -y bash bash-doc bash-completion curl wget zip  gzip vim openssl
+RUN sudo apt install -y bash bash-doc bash-completion curl wget zip  gzip vim openssl apt-utils fonts-powerline nano
 
 # ADMINISTRATION
 RUN sudo apt install -y net-tools tree lynx file
 
 # DEVELOPER TOOLS
-RUN sudo apt install -y make git htop make nodejs npm
-
-#Install Brew
-#RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+RUN sudo apt install -y make git htop make nodejs npm zsh git-flow
 
 #Install oh-my-zsh
-RUN sudo apt-add-repository ppa:git-core/ppa
-RUN sudo apt-get update
-RUN sudo apt-get install zsh -y
-RUN curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash
-RUN sudo /bin/bash -c echo "skip_global_compinit=1" >>/etc/zsh/zshenv
-RUN sudo /bin/bash -c echo "ZSH_DISABLE_COMPFIX="true" >>/etc/zsh/zshenv
-RUN sudo bash -c zsh
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# Install plugins
+
+## Auto suggestions
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions
+RUN sudo mkdir /.oh-my-zsh/custom/plugins/ -p
+RUN sudo mv zsh-autosuggestions /.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+## Highliting
+RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting
+RUN sudo mv zsh-syntax-highlighting /.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+RUN sed -i 's/plugins=(git)/plugins=(git,autosuggestions,syntax-highlighting)/' ~/.zshrc
+
+#af-magic.zsh-theme
 
 #ForDriveMount
-RUN mkdir /opt/userdata -p
+RUN sudo mkdir /opt/userdata -p
+
+
+
+
 

@@ -20,6 +20,14 @@ RUN apt install -y net-tools tree lynx file
 # DEVELOPER TOOLS
 RUN apt install -y make git htop make nodejs npm
 
+
+## Github CLI
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+RUN apt-add-repository https://cli.github.com/packages
+RUN apt update
+RUN apt install gh
+
+
 # CLOUD
 ## AWS CLI
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
