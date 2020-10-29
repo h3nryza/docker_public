@@ -5,6 +5,7 @@ LABEL version="1.0" maintainer="https://github.com/h3nryza"
 # Arguments
 ARG PACKER_VER=1.5.6
 ARG TF_VER=0.12.29
+ARG GITCLI_VER=1.2.0
 ARG DEBIAN_FRONTEND=noninteractive
 
 # UPDATE
@@ -22,10 +23,8 @@ RUN apt install -y make git htop make nodejs npm
 
 
 ## Github CLI
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-RUN apt-add-repository https://cli.github.com/packages
-RUN apt update
-RUN apt install gh
+RUN wget "https://github.com/cli/cli/releases/download/v${GITCLI_VER}/gh_${GITCLI_VER}_linux_amd64.deb"
+RUN apt install ./gh_$(GITCLI_VER)_linux_amd64.deb
 
 
 # CLOUD

@@ -22,6 +22,7 @@ __ADMIN__
 __DEVELOPMENT__
 - make 
 - git 
+- github cli
 - htop 
 - build-base 
 - nodejs 
@@ -49,12 +50,13 @@ Used to control the packer and terraform versions
 
 PACKER_VER=1.5.6
 TF_VER=0.12.29
+GITCLI_VER=1.2.0
 
 ### Without build arguments
 docker build . --label h3nryza_cloud_ubuntu -t h3nryza/cloud_ubuntu 
 
 ### With Arguments
-docker build . --build-arg PACKER_VER=1.5.6 --build-arg TF_VER=0.12.29  --label h3nryza_cloud_ubuntu -t h3nryza/cloud_ubuntu 
+docker build . --build-arg PACKER_VER=1.5.6 --build-arg TF_VER=0.12.29 --build-arg GITCLI_VER=1.2.0  --label h3nryza_cloud_ubuntu -t h3nryza/cloud_ubuntu 
 
 ______________________________
 
