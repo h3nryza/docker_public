@@ -24,7 +24,7 @@ RUN apt install -y make git htop make nodejs npm
 
 ## Github CLI
 RUN wget "https://github.com/cli/cli/releases/download/v${GITCLI_VER}/gh_${GITCLI_VER}_linux_amd64.deb"
-RUN apt install ./gh_$(GITCLI_VER)_linux_amd64.deb
+RUN apt install ./gh_${GITCLI_VER}_linux_amd64.deb
 
 
 # CLOUD
