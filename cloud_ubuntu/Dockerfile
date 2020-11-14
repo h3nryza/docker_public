@@ -6,7 +6,6 @@ LABEL version="1.0" maintainer="https://github.com/h3nryza"
 ARG PACKER_VER=1.5.6
 ARG TF_VER=0.12.29
 ARG GITCLI_VER=1.2.0
-ARG DEBIAN_FRONTEND=noninteractive
 
 # UPDATE
 RUN apt update -y && apt upgrade -y
@@ -15,10 +14,10 @@ RUN apt update -y && apt upgrade -y
 RUN apt install -y bash bash-doc bash-completion  curl wget zip  gzip vim openssl software-properties-common
 
 # ADMINISTRATION
-RUN apt install -y net-tools tree lynx file python3.8 python3-pip python3-dev 
+RUN apt install -y net-tools tree lynx file
 
 # DEVELOPER TOOLS
-RUN apt install -y make git htop make nodejs npm
+RUN apt install -y make git htop make nodejs npm python3.8 python3-pip python3-dev jq 
 
 ## Github CLI
 RUN wget "https://github.com/cli/cli/releases/download/v${GITCLI_VER}/gh_${GITCLI_VER}_linux_amd64.deb"
@@ -41,6 +40,7 @@ unzip terraform_${TF_VER}_linux_amd64.zip && \
 rm -rf terraform_${TF_VER}_linux_amd64.zip && \
 mv terraform /usr/local/bin/
 
+
 # CONTAINERS
 ## KUBERNETES
 RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && \
@@ -51,6 +51,7 @@ mv ./kubectl /usr/local/bin/kubectl
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
 chmod 700 get_helm.sh && \
 ./get_helm.sh
+RUN helm plugin install https://github.com/databus23/helm-diff
 
 ## EKSUttil
 RUN curl --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp && \
@@ -64,6 +65,7 @@ RUN npm install -g snyk
 #ForDriveMount
 RUN mkdir /opt/userdata -p
 
+
 # ALIAS
 RUN echo 'alias k=kubectl' >>~/.bashrc && \
 echo 'alias tf=terraform' >>~/.bashrc && \
@@ -71,7 +73,6 @@ echo 'alias eks=eksctl' >>~/.bashrc
 
 
 # AUTO COMPLETE
-
 ## Enable Autocomplete in bashrc
 RUN echo " \n\
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then \n\

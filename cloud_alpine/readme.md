@@ -20,10 +20,10 @@ docker build . --build-arg PACKER_VER=1.5.6 --build-arg TF_VER=0.12.29  --label 
 docker pull 3nryza/h3nryza_alpine:latest
 
 ### Running the container
-docker run -itd --name alpine_h3nryza h3nryza/h3nryza_alpine:latest 
+docker run -itd --name alpine_h3nryza h3nryza/h3nryza_alpine:latest sh -l
 
 ## Running the container with local mountpoint
-docker run -itd -v /c:/repo/opt/userdata --name alpine_h3nryza h3nryza/h3nryza_alpine:latest  
+docker run -itd -v /c:/repo/opt/userdata --name alpine_h3nryza h3nryza/h3nryza_alpine:latest sh -l
 
 
 ## Update to docker hub
