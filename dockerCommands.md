@@ -1,5 +1,5 @@
-## Best practises
-https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+## Best practises  
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/  
 
 
 ## Build commands  
@@ -12,9 +12,9 @@ docker tag image:version repo/image:version
 docker push  
 
 ## Run commands  
-__interactive__ 	docker run -it --name runName containerName
-__daemon__ 			docker run -d  --name runName containerName
-__attache__			docker attach runName
+__interactive__ 	docker run -it --name runName containerName  
+__daemon__ 			docker run -d  --name runName containerName  
+__attache__			docker attach runName  
 
 ## Cleanups  
 
